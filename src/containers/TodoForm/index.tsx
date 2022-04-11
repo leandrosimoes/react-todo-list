@@ -49,7 +49,7 @@ const TodoForm: React.FC = () => {
                     placeholder='Make some coffe...'
                 />
                 <Button
-                    buttonType='danger'
+                    buttonType='success'
                     onClick={handleAddButtonOnClick}
                     disabled={!newTodoText}>
                     <FaPlus className={styles.icon} /> Add
