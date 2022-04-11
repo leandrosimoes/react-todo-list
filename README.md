@@ -16,6 +16,7 @@ Simple React Todo List Application
 * React Context API
 * Functional Components
 * React Hooks
+* React CSS Modules
 
 ## Aditional packages that I suded
 
