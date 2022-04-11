@@ -13,20 +13,22 @@ import { TodosContext } from '../../context/TodosContext'
 import styles from './TodoForm.module.css'
 
 const TodoForm: React.FC = () => {
-    const { addTodo } = useContext(TodosContext)
+    const { addTodo, errorMessage } = useContext(TodosContext)
     const [newTodoText, setNewTodoText] = useState('')
 
     const handleAddButtonOnClick: MouseEventHandler<HTMLButtonElement> = (
         event
     ) => {
-        addTodo(newTodoText)
-        setNewTodoText('')
+        if (addTodo(newTodoText)) {
+            setNewTodoText('')
+        }
         event.preventDefault()
     }
 
     const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-        addTodo(newTodoText)
-        setNewTodoText('')
+        if (addTodo(newTodoText)) {
+            setNewTodoText('')
+        }
         event.preventDefault()
     }
 
@@ -37,20 +39,25 @@ const TodoForm: React.FC = () => {
     }
 
     return (
-        <form className={styles.todoForm} onSubmit={handleFormSubmit}>
-            <Input
-                type='text'
-                onChange={handleTodoTextInputOnChange}
-                value={newTodoText}
-                placeholder='Make some coffe...'
-            />
-            <Button
-                buttonType='danger'
-                onClick={handleAddButtonOnClick}
-                disabled={!newTodoText}>
-                Add
-            </Button>
-        </form>
+        <>
+            <form className={styles.todoForm} onSubmit={handleFormSubmit}>
+                <Input
+                    type='text'
+                    onChange={handleTodoTextInputOnChange}
+                    value={newTodoText}
+                    placeholder='Make some coffe...'
+                />
+                <Button
+                    buttonType='danger'
+                    onClick={handleAddButtonOnClick}
+                    disabled={!newTodoText}>
+                    Add
+                </Button>
+            </form>
+            {errorMessage && (
+                <div className={styles.errorMessage}>{errorMessage}</div>
+            )}
+        </>
     )
 }
 

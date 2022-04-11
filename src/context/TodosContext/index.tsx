@@ -5,16 +5,18 @@ import { TodoItemType } from '../../@types'
 
 type TodosContextType = {
     todos: TodoItemType[]
+    errorMessage: string
     setTodos: (todos: TodoItemType[]) => void
-    addTodo: (text: string) => void
+    addTodo: (text: string) => boolean
     completeTodo: (id: string) => void
     deleteTodo: (id: string) => void
 }
 
 const INITIAL_STATE: TodosContextType = {
     todos: [],
+    errorMessage: '',
     setTodos: () => {},
-    addTodo: () => {},
+    addTodo: () => false,
     completeTodo: () => {},
     deleteTodo: () => {},
 }
@@ -23,11 +25,19 @@ export const TodosContext = createContext(INITIAL_STATE)
 
 const TodosContextProvider: React.FC = ({ children }) => {
     const [todos, setTodos] = useState<TodoItemType[]>([])
+    const [errorMessage, setErrorMessage] = useState('')
 
     const addTodo = (text: string) => {
+        setErrorMessage('')
+
         if (!text) {
-            alert('Error')
-            return
+            setErrorMessage('Todo text is required')
+            return false
+        }
+
+        if (text.length < 10) {
+            setErrorMessage('Todo text must have at least 10 chars')
+            return false
         }
 
         const newTodo: TodoItemType = {
@@ -38,6 +48,8 @@ const TodosContextProvider: React.FC = ({ children }) => {
         }
 
         setTodos([newTodo, ...todos])
+
+        return true
     }
 
     const completeTodo = (id: string) => {
@@ -62,6 +74,7 @@ const TodosContextProvider: React.FC = ({ children }) => {
                 completeTodo,
                 addTodo,
                 deleteTodo,
+                errorMessage,
             }}>
             {children}
         </TodosContext.Provider>

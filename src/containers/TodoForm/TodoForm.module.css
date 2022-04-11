@@ -4,3 +4,10 @@
     display: flex;
     align-items: center;
 }
+
+.errorMessage {
+    font-size: 16px;
+    font-weight: 700;
+    color: tomato;
+    margin-top: 5px;
+}
