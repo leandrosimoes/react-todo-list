@@ -6,7 +6,7 @@ Simple React Todo List Application
 
 1) Clone the project
 2) Execute `npm install` at the root folder
-3) Execut `npm start`
+3) Execute `npm start`
 
 ## What did I use?
 
@@ -18,7 +18,7 @@ Simple React Todo List Application
 * React Hooks
 * React CSS Modules
 
-## Aditional packages that I suded
+## Aditional packages that I used
 
 * [react-icons](https://react-icons.github.io/react-icons/)
 * [react-uuid](https://www.npmjs.com/package/react-uuid)
