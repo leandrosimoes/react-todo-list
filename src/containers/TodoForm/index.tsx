@@ -1,31 +1,33 @@
-import React, { ChangeEventHandler, useState } from 'react'
-import uuid from 'react-uuid'
+import React, {
+    ChangeEventHandler,
+    FormEventHandler,
+    MouseEventHandler,
+    useContext,
+    useState,
+} from 'react'
 
-import { TodoItemType } from '../../@types'
 import Button from '../../components/Button'
 import Input from '../../components/Input'
-import useTodos from '../../hooks/useTodos'
+import { TodosContext } from '../../context/TodosContext'
 
 import styles from './TodoForm.module.css'
 
 const TodoForm: React.FC = () => {
-    const { todos, setTodos } = useTodos()
+    const { addTodo } = useContext(TodosContext)
     const [newTodoText, setNewTodoText] = useState('')
 
-    const handleAddButtonOnClick = () => {
-        if (!newTodoText) {
-            return
-        }
-
-        const newTodo: TodoItemType = {
-            id: uuid(),
-            text: newTodoText,
-            isDone: false,
-            createdAt: new Date(),
-        }
-
-        setTodos([newTodo, ...todos])
+    const handleAddButtonOnClick: MouseEventHandler<HTMLButtonElement> = (
+        event
+    ) => {
+        addTodo(newTodoText)
         setNewTodoText('')
+        event.preventDefault()
+    }
+
+    const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event) => {
+        addTodo(newTodoText)
+        setNewTodoText('')
+        event.preventDefault()
     }
 
     const handleTodoTextInputOnChange: ChangeEventHandler<HTMLInputElement> = (
@@ -35,7 +37,7 @@ const TodoForm: React.FC = () => {
     }
 
     return (
-        <div className={styles.todoForm}>
+        <form className={styles.todoForm} onSubmit={handleFormSubmit}>
             <Input
                 type='text'
                 onChange={handleTodoTextInputOnChange}
@@ -48,7 +50,7 @@ const TodoForm: React.FC = () => {
                 disabled={!newTodoText}>
                 Add
             </Button>
-        </div>
+        </form>
     )
 }
 

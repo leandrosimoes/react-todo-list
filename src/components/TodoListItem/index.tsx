@@ -6,29 +6,31 @@ import Button from '../Button'
 import styles from './TodoListItem.module.css'
 
 type TodoListItemTypeExtended = TodoItemType & {
-    onDelete(id: string): void
-    onDone(id: string): void
+    onDeleteButtonPress(id: string): void
+    onDoneButtonPress(id: string): void
 }
 
 const TodoListItem: React.FC<TodoListItemTypeExtended> = ({
     id,
     text,
     isDone,
-    onDelete,
-    onDone,
+    onDeleteButtonPress,
+    onDoneButtonPress,
 }) => {
     const isDoneClass = isDone ? styles.done : ''
 
     return (
         <li className={`${styles.wrapper} ${isDoneClass}`}>
-            <div className={`${styles.textArea} ${isDoneClass}`}>{text}</div>
+            <div className={styles.textArea}>{text}</div>
             <div className={styles.buttonsArea}>
-                <Button buttonType='danger' onClick={() => onDelete(id)}>
+                <Button
+                    buttonType='danger'
+                    onClick={() => onDeleteButtonPress(id)}>
                     Delete
                 </Button>
                 <Button
                     buttonType='success'
-                    onClick={() => onDone(id)}
+                    onClick={() => onDoneButtonPress(id)}
                     disabled={isDone}>
                     Done
                 </Button>

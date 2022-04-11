@@ -1,22 +1,11 @@
+import { useContext } from 'react'
 import TodoListItem from '../../components/TodoListItem'
-import useTodos from '../../hooks/useTodos'
+import { TodosContext } from '../../context/TodosContext'
 
 import styles from './TodoList.module.css'
 
 export default function TodoList() {
-    const { todos, setTodos } = useTodos()
-
-    const onDeleteTodo = (id: string) => {
-        setTodos(todos.filter((todo) => todo.id !== id))
-    }
-
-    const onDoneTodo = (id: string) => {
-        setTodos(
-            todos.map((todo) => {
-                return { ...todo, isDone: todo.isDone || todo.id === id }
-            })
-        )
-    }
+    const { todos, completeTodo, deleteTodo } = useContext(TodosContext)
 
     return (
         <ul className={styles.wrapper}>
@@ -24,8 +13,8 @@ export default function TodoList() {
                 <TodoListItem
                     key={todo.id}
                     {...todo}
-                    onDelete={onDeleteTodo}
-                    onDone={onDoneTodo}
+                    onDeleteButtonPress={deleteTodo}
+                    onDoneButtonPress={completeTodo}
                 />
             ))}
         </ul>

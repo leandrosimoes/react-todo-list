@@ -19,7 +19,10 @@
 }
 
 .done {
-    text-decoration: line-through;
     background-color: #5c5c5c;
     opacity: 0.9;
+}
+
+.done .textArea {
+    text-decoration: line-through;
 }
