@@ -1,0 +1,6 @@
+.todoForm {
+    width: 100%;
+    margin-top: 3vh;
+    display: flex;
+    align-items: center;
+}
