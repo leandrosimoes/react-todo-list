@@ -14,7 +14,10 @@ const Button: React.FC<ButtonType> = ({
     const className = styles[buttonType] || ''
 
     return (
-        <button type='button' className={className} {...props}>
+        <button
+            type='button'
+            className={`${styles.button} ${className}`}
+            {...props}>
             {children}
         </button>
     )

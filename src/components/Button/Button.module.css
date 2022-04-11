@@ -1,7 +1,10 @@
-.default {
+.button {
     padding: 8px;
     color: #fff;
     font-weight: 700;
+}
+
+.default {
     background-color: grey;
     border: 1px solid grey;
     border-radius: 5px;
@@ -9,9 +12,6 @@
 }
 
 .danger {
-    padding: 8px;
-    color: #fff;
-    font-weight: 700;
     background-color: tomato;
     border: 1px solid tomato;
     border-radius: 5px;
@@ -19,9 +19,6 @@
 }
 
 .success {
-    padding: 8px;
-    color: #fff;
-    font-weight: 700;
     background-color: green;
     border: 1px solid green;
     border-radius: 5px;
