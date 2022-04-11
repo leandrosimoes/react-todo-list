@@ -6,8 +6,7 @@
       "prettier/react"
     ],
     "globals": {
-      "__DEV__": true,
-      "swal": true,
+      "__DEV__": true
     },
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
