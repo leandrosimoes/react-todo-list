@@ -13,6 +13,10 @@ const TodoForm: React.FC = () => {
     const [newTodoText, setNewTodoText] = useState('')
 
     const handleAddButtonOnClick = () => {
+        if (!newTodoText) {
+            return
+        }
+
         const newTodo: TodoItemType = {
             id: uuid(),
             text: newTodoText,
@@ -38,7 +42,10 @@ const TodoForm: React.FC = () => {
                 value={newTodoText}
                 placeholder='Make some coffe...'
             />
-            <Button buttonType='danger' onClick={handleAddButtonOnClick}>
+            <Button
+                buttonType='danger'
+                onClick={handleAddButtonOnClick}
+                disabled={!newTodoText}>
                 Add
             </Button>
         </div>

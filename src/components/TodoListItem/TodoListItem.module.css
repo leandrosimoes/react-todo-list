@@ -9,6 +9,15 @@
     border-radius: 5px;
 }
 
+.textArea {
+    flex: 90%;
+}
+
+.buttonsArea {
+    display: flex;
+    flex: 10%;
+}
+
 .done {
     text-decoration: line-through;
     background-color: #5c5c5c;

@@ -17,10 +17,12 @@ const TodoListItem: React.FC<TodoListItemTypeExtended> = ({
     onDelete,
     onDone,
 }) => {
+    const isDoneClass = isDone ? styles.done : ''
+
     return (
-        <li className={`${styles.wrapper} ${isDone ? styles.done : ''}`}>
-            <span className={isDone ? styles.done : ''}>{text}</span>
-            <div>
+        <li className={`${styles.wrapper} ${isDoneClass}`}>
+            <div className={`${styles.textArea} ${isDoneClass}`}>{text}</div>
+            <div className={styles.buttonsArea}>
                 <Button buttonType='danger' onClick={() => onDelete(id)}>
                     Delete
                 </Button>
