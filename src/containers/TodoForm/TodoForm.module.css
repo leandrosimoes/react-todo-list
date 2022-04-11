@@ -5,6 +5,10 @@
     align-items: center;
 }
 
+.icon {
+    margin-right: 5px;
+}
+
 .errorMessage {
     font-size: 16px;
     font-weight: 700;

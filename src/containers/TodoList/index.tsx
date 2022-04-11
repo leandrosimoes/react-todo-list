@@ -5,7 +5,7 @@ import { TodosContext } from '../../context/TodosContext'
 import styles from './TodoList.module.css'
 
 export default function TodoList() {
-    const { todos, completeTodo, deleteTodo } = useContext(TodosContext)
+    const { todos, toggleTodoCompleted, deleteTodo } = useContext(TodosContext)
 
     return (
         <ul className={styles.wrapper}>
@@ -14,7 +14,7 @@ export default function TodoList() {
                     key={todo.id}
                     {...todo}
                     onDeleteButtonPress={deleteTodo}
-                    onDoneButtonPress={completeTodo}
+                    toggleDoneButtonPress={toggleTodoCompleted}
                 />
             ))}
         </ul>

@@ -5,6 +5,7 @@ import React, {
     useContext,
     useState,
 } from 'react'
+import { FaPlus } from 'react-icons/fa'
 
 import Button from '../../components/Button'
 import Input from '../../components/Input'
@@ -51,7 +52,7 @@ const TodoForm: React.FC = () => {
                     buttonType='danger'
                     onClick={handleAddButtonOnClick}
                     disabled={!newTodoText}>
-                    Add
+                    <FaPlus className={styles.icon} /> Add
                 </Button>
             </form>
             {errorMessage && (

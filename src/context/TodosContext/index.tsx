@@ -8,7 +8,7 @@ type TodosContextType = {
     errorMessage: string
     setTodos: (todos: TodoItemType[]) => void
     addTodo: (text: string) => boolean
-    completeTodo: (id: string) => void
+    toggleTodoCompleted: (id: string) => void
     deleteTodo: (id: string) => void
 }
 
@@ -17,7 +17,7 @@ const INITIAL_STATE: TodosContextType = {
     errorMessage: '',
     setTodos: () => {},
     addTodo: () => false,
-    completeTodo: () => {},
+    toggleTodoCompleted: () => {},
     deleteTodo: () => {},
 }
 
@@ -52,10 +52,12 @@ const TodosContextProvider: React.FC = ({ children }) => {
         return true
     }
 
-    const completeTodo = (id: string) => {
+    const toggleTodoCompleted = (id: string) => {
         setTodos(
             todos.map((todo) => {
-                return { ...todo, isDone: todo.isDone || todo.id === id }
+                if (todo.id === id) todo.isDone = !todo.isDone
+
+                return { ...todo }
             })
         )
     }
@@ -71,7 +73,7 @@ const TodosContextProvider: React.FC = ({ children }) => {
                     a.createdAt <= b.createdAt ? 1 : -1
                 ),
                 setTodos,
-                completeTodo,
+                toggleTodoCompleted,
                 addTodo,
                 deleteTodo,
                 errorMessage,
