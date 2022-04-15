@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 import uuid from 'react-uuid'
 
-import { TodoItemType } from '../../@types'
+import { FCWithChildrenType, TodoItemType } from '../../@types'
 
 type TodosContextType = {
     todos: TodoItemType[]
@@ -23,7 +23,7 @@ const INITIAL_STATE: TodosContextType = {
 
 export const TodosContext = createContext(INITIAL_STATE)
 
-const TodosContextProvider: React.FC = ({ children }) => {
+const TodosContextProvider: React.FC<FCWithChildrenType> = ({ children }) => {
     const [todos, setTodos] = useState<TodoItemType[]>([])
     const [errorMessage, setErrorMessage] = useState('')
 

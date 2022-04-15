@@ -2,8 +2,7 @@
     "root": true,
     "extends": [
       "airbnb-typescript-prettier",
-      "prettier",
-      "prettier/react"
+      "prettier"
     ],
     "globals": {
       "__DEV__": true
